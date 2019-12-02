@@ -1,13 +1,13 @@
 {
-  "1": "Bienvenido",
+  "1": "Bienvenido!",
   "2": "1. ¿Cuántos años tienes?",
   "3": "Edad",
   "4": "Seleccione su edad",
-  "5": "2. ¿Qué tan bien conoces las montañas?",
-  "6": "Pequeño",
-  "7": "Medio",
-  "8": "Experto",
-  "9": "3. ¿Cuántas montañas conoces?",
+  "5": "2. Cual es tu nivel de conocimiento sobre montañas?",
+  "6": "Bajo: No estoy interesado en las montañas, conozco la altitud de alguna montaña famosa, pero no sabría reconocerlas en una imagen.",
+  "7": "Medio: Conozco alguna montaña de la zona donde vivo y su altitud aproximada, además podría reconocer alguna montaña famosa.",
+  "8": "Alto: Me gustan las montañas, conozco varias montañas de diferentes países y sé cual es su altitud.",
+  "9": "3.Di un número aproximado de montañas que  conoces (por ejemplo: the everest, mont blanc, etc...) y que serías capaz de reconocer en una imagen.",
   "10": "¿Estás listo para todas las preguntas?",
   "11": "SÍ",
   "12": "Tu suposición es:",
@@ -25,5 +25,5 @@
   "24": "no cerrado",
   "25": "Introducción",
   "26": "Enlace",
-  "27": "Antes de comenzar, responda 3 preguntas para que podamos conocerlo mejor!"
+  "27": "En esta página queremos conocer tu habilidad para estimar la altitud de la montaña que aparece en una imagen utilizando la información que aparece en la imagen. Antes de empezar vamos a hacerte un par de preguntas:"
 }

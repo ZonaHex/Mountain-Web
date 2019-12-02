@@ -12,4 +12,7 @@ public class GeneralRes {
 
     private Object data;
     private String message;
+
+
+
 }

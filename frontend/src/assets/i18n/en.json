@@ -1,13 +1,13 @@
 {
-  "1": "Welcome",
+  "1": "Welcome!",
   "2":"1.How old are you?",
   "3":"Age",
   "4":"Select your age",
-  "5":"2. How well do you know mountains? ",
-  "6":"Little",
-  "7":"Medium",
-  "8":"Expert",
-  "9":"3. How many mountains do you know?",
+  "5":"2. What is your level of knowledge about mountains? ",
+  "6":"Low: I am not interested in mountains, I almost know the altitude of some famous mountains, but I would not be able to recognize them in an image.",
+  "7":"Medium: I know some mountain in the area where I live and its approximate altitude, I could also recognize some famous mountain.",
+  "8":"High: I like mountains, I know several mountains from different countries and I know what their altitude is.",
+  "9":"3. Enter an approximate number of mountains that you know (for example: the everest, mont blanc, etc ...) and that you would be able to recognize in an image.",
   "10":"Are you ready for all the questions?",
   "11":"YES",
   "12":"Your guess is:",
@@ -25,5 +25,5 @@
   "24":"not close",
   "25":"Introduction",
   "26":"Link",
-  "27":" Before we start, please answer 3 questions for us to know you better! "
+  "27":"On this page we want to know your ability to estimate the altitude of a mountain that appears in an image using the information showed the image. Before we start, we are going to ask you a couple of questions: "
 }
