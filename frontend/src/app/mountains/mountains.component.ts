@@ -56,6 +56,24 @@ export class MountainsComponent implements OnInit {
   try1():void{
     console.log(this.mountains)
   }
+  myKnowledge;
+  saveKnowledge():void{
+    for( let i=0;i<3;i++){
+      if(this.dataAll.data[i].know!=null)
+      {this.myGuess2 = this.myGuess+';'+ this.ids[i]+":"+this.dataAll.data[i].know;
+      console.log(this.myGuess2)}
+    }
+    this.mountainsService.findMe(this.ip).subscribe((resp)=>{
+      console.log(resp.body.data);
+      this.allGuess=resp.body.data;
+      console.log(this.allGuess[this.allGuess.length-1].id);
+      this.id=this.allGuess[this.allGuess.length-1].id;
+      this.mountainsService.guessAll(this.myGuess2,this.id).subscribe((resp)=>{
+        console.log(resp)
+      })
+    })
+  }
+
   getMountains():void{
     this.mountainsService.getMountains().subscribe((resp)=>{
       console.log(resp);
@@ -91,7 +109,7 @@ export class MountainsComponent implements OnInit {
   myID;
   myIP;
   id;
-
+  know;
   allGuess=[];
   checkOne=0;
   ifFinished():void{
@@ -109,6 +127,8 @@ export class MountainsComponent implements OnInit {
       alert('Please finish all your questions!')
     }
   }
+  myGuess2;
+
   guessAll():void{
     this.myGuess=this.ids[0]+":"+this.mountains[0].guess;
     for( let i=1;i<3;i++){

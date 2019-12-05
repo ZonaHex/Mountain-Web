@@ -21,6 +21,7 @@ export class Mountain{
      guess: number;
      img: string;
      slider: number;
+     know: number;
 
 }
 
