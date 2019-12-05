@@ -5,22 +5,18 @@
 <mapper namespace="MOUNTAINS">
     <resultMap id="MOUNTAINS" type="com.web.pojo.record.MountainsRecord">
         <result property="id" column="id"/>
-        <result property="name" column="name"/>
+        <result property="name" column="mountain"/>
         <result property="altitude" column="altitude"/>
         <result property="url" column="url"/>
-        <result property="info" column="info"/>
-        <result property="img" column="img"/>
+        <result property="info" column="description"/>
+        <result property="img" column="picName"/>
     </resultMap>
 
-
-
-
     <select id="SELECT_SOME" parameterType="java.lang.Long" resultMap="MOUNTAINS">
-      select *
+       select DISTINCT *
       from mountains
-      order by rand() LIMIT 3
-
+      inner join pictures on mountains.id = pictures.id
+	    order by rand() limit 3
     </select>
-
 
 </mapper>
