@@ -29,7 +29,6 @@ public class MountainsController {
     public GeneralRes loadSome(){
         try{
 
-
         return GeneralRes.builder().data(mountainService.loadSome()).build();
     } catch (Throwable t) {
 

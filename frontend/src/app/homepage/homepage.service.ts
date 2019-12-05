@@ -12,14 +12,14 @@ export class HomepageService {
     private http: HttpClient
   ) { }
   createUser(data:User): Observable<any> {
-    return this.http.post<User>("http://localhost:8086/web/user/create",data,{ observe:'response'})
+    return this.http.post<User>("http://172.18.69.107:8080/demo-1.0-SNAPSHOT/web/user/create",data,{ observe:'response'})
   }
   findMe(ip):Observable<any> {
-    return this.http.get("http://localhost:8086/web/user/findme?ip="+ip,{ observe :'response'})
+    return this.http.get("http://172.18.69.107:8080/demo-1.0-SNAPSHOT/web/user/findme?ip="+ip,{ observe :'response'})
 }
 
   guessAll(myGuess:string,myIP:string): Observable<any>{
-    return this.http.put("http://localhost:8086/web/user",
+    return this.http.put("http://172.18.69.107:8080/demo-1.0-SNAPSHOT/web/user",
       {
         tab:myGuess,
         ip:myIP},

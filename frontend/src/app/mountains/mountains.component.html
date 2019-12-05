@@ -4,7 +4,7 @@
   <mat-step *ngFor="let mountain of mountains" label="({{mountain.no+1}}/25)" [stepControl]="basicFormGroup">
    <form [formGroup]="basicFormGroup">
 
-     <a style="float:left;"><img src="http://localhost:8086/static/{{mountain.img}}" alt="" style="height:300px"/></a>
+     <a style="float:left;"><img src="http://172.18.69.107:8080/test/imgstore/{{mountain.img}}" alt="" style="height:300px"/></a>
 
      <mat-slider formControlName="first" style="height: 320px;float: right"
        class="example-margin"
@@ -52,7 +52,7 @@
 
     <ng-container matColumnDef="img"  style="width: 10%">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'20'|translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row"> <a><img src="http://localhost:8086/static/{{row.img}}" alt="" style="height:150px"/></a></mat-cell>
+      <mat-cell *matCellDef="let row"> <a><img src="http://172.18.69.107:8080/test/imgstore/{{row.img}}" alt="" style="height:150px"/></a></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="altitude" style="width: 10%">

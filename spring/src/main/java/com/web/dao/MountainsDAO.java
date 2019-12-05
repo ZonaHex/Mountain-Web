@@ -15,9 +15,13 @@ public class MountainsDAO extends SqlSessionDaoSupport {
         super.setSqlSessionTemplate(sqlSessionTemplate);
     }
 
-    public List<MountainsRecord> loadSome() {
+    public List<MountainsRecord> loadSome(List<Integer> randomList) {
         return super.getSqlSession()
                 .selectList("MOUNTAINS.SELECT_SOME");
+    }
+    public List<MountainsRecord> loadOne(int id) {
+        return super.getSqlSession()
+                .selectList("MOUNTAINS.SELECT_ONE",id);
     }
 
 
