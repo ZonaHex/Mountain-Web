@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Mountain} from "../mountains/mountain";
 import {MountainsService} from "../mountains/mountains.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-endpage',
@@ -10,17 +11,23 @@ import {MountainsService} from "../mountains/mountains.service";
 export class EndpageComponent implements OnInit {
   @Input() mountain: Mountain;
   constructor(
-    private mountainsService: MountainsService
+    private mountainsService: MountainsService,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {this.getIP()
   }
+  first=false;
   mountains;
   test():void{
     console.log(this.mountain)
   }
+
   accept():void{
-    alert("Thank you a lot for your time!")
+    this.first=true;
+
+    this.snackBar.open("Thank you!¡Gracias!",'ok',{duration:3000}
+    )
   }
   allGuess=[];
   ip:string;
@@ -32,8 +39,10 @@ export class EndpageComponent implements OnInit {
   }
   id;
   refuse():void{
-    alert("We are sorry to hear that, thank you!");
-
+    this.first=true;
+    this.snackBar.open("Thank you!¡Gracias!",
+    'ok',{duration:3000}
+    );
     this.mountainsService.findMe(this.ip).subscribe((resp)=>{
       this.allGuess=resp.body.data;
       console.log(this.allGuess[this.allGuess.length-1].id);
@@ -42,5 +51,9 @@ export class EndpageComponent implements OnInit {
         console.log(resp)
       })
     });
+  }
+  ifEnd=false;
+  end():void{
+    this.ifEnd=true;
   }
 }

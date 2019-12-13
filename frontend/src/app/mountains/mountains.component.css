@@ -2,3 +2,18 @@
 
   transform: rotate(-90deg);
 }
+.mat-column-info{
+  flex: 0 0 350px;
+}
+.mat-column-url{
+  flex: 0 0 25px;
+}
+.mat-column-img{
+  flex: 0 0 200px;
+}
+.mat-column-color{
+  flex: 0 0 100px;
+}
+.mat-column-name{
+  flex: 0 0 100px;
+}

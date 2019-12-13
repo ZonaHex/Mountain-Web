@@ -6,7 +6,7 @@
 
   <!--<svg id="rocket" alt=-->
  <img src="http://172.18.69.107:8080/test/imgstore/0002.jpg"
-       width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
+         width="70px">
     <!--<g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">-->
       <!--<circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)" fill="#dd0031"/>-->
       <!--<g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">-->
@@ -24,29 +24,34 @@
 </div>
 
 <!-- Resources -->
-<h2>{{'27'|translate}}</h2>
-<div>
-  <mat-card>
+
+<div >
+  <mat-card style="background-color: #FBFBEA">
+    <mat-card-header>
+      <h2>{{'27'|translate}}</h2>
+    </mat-card-header>
+    <mat-divider></mat-divider>
     <mat-card-content>
+      <br>
       <h2 class="example-h2">{{'2'|translate}}</h2>
 
       <section class="example-section">
         <mat-form-field class="example-margin">
           <input matInput type="number" placeholder="{{'3'|translate}}" [(ngModel)]="myAge" required>
         </mat-form-field>
-        <h2 class="example-h2">{{'4'|translate}}</h2>
-        <mat-slider
-          class="example-margin"
-          [disabled]="disabled"
-          [invert]="invert"
-          [max]="max"
-          [min]="min"
-          [step]="step"
-          [thumbLabel]="thumbLabel"
-          [tickInterval]="tickInterval"
-          [(ngModel)]="myAge"
-          [vertical]="vertical">
-        </mat-slider>
+<!--        <h2 class="example-h2">{{'4'|translate}}</h2>-->
+<!--        <mat-slider-->
+<!--          class="example-margin"-->
+<!--          [disabled]="disabled"-->
+<!--          [invert]="invert"-->
+<!--          [max]="max"-->
+<!--          [min]="min"-->
+<!--          [step]="step"-->
+<!--          [thumbLabel]="thumbLabel"-->
+<!--          [tickInterval]="tickInterval"-->
+<!--          [(ngModel)]="myAge"-->
+<!--          [vertical]="vertical">-->
+<!--        </mat-slider>-->
       </section>
 
     <h2>{{'5'|translate}}</h2>
@@ -66,13 +71,14 @@
             <input matInput type="number" placeholder="Num" [(ngModel)]="myMountain" required>
           </mat-form-field>
         </section>
+       <mat-divider></mat-divider>
+        <h2>{{'10'|translate}}</h2>
+        <button mat-fab color="primary" routerLink="/mountains" (click)="createUser()"  >{{'11'|translate}}</button>
+
       </mat-card-content>
     </mat-card>
   </div>
 
-<div class="example-button-row" >
-  <h2>{{'10'|translate}}</h2>
-  <button mat-fab color="primary" routerLink="/mountains" (click)="createUser()" style="float: right" >{{'11'|translate}}</button>
-</div>
+
 </div>
 <router-outlet></router-outlet>

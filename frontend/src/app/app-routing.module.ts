@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {MountainsComponent} from "./mountains/mountains.component";
 import {HomepageComponent} from "./homepage/homepage.component";
 import {EndpageComponent} from "./endpage/endpage.component";
+import {TestComponent} from "./test/test.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: '',   redirectTo: '/homepage', pathMatch: 'full' },
+  {
+    path: 'test', component: TestComponent
+  },
 ];
 
 @NgModule({

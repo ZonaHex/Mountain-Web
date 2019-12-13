@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { Resps, Mountain } from "./mountain";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MountainsService } from "./mountains.service";
@@ -14,14 +14,21 @@ import {register} from "ts-node";
 export class MountainsComponent implements OnInit {
 
   constructor(
-    private mountainsService: MountainsService
+    private mountainsService: MountainsService,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.basicFormGroup = new FormGroup({
-      first: new FormControl(0, Validators.required,),
-      second: new FormControl(0, Validators.required )
+      first: new FormControl({value:0} ,Validators.required,),
+      testName: new FormControl({value: 0},Validators.required )
     })
   }
-
+  ngAfterViewChecked(){
+    this.changeDetector.detectChanges()
+  }
+// <div [formGroup]="myGroup">
+//   <input formControlName="firstName">
+//   <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
+//     </div>
   autoTicks = true;
   disabled = false;
   invert = false;
@@ -38,6 +45,7 @@ export class MountainsComponent implements OnInit {
   ngOnInit() {
     this.getMountains();
     this.getIP();
+
   }
   getIP():void{
     this.mountainsService.getIP().subscribe((res:any)=>{
@@ -58,15 +66,14 @@ export class MountainsComponent implements OnInit {
   }
   myKnowledge;
   saveKnowledge():void{
-    for( let i=0;i<3;i++){
+    this.myGuess2 = this.myGuess+';';
+    for( let i=0;i<25;i++){
       if(this.dataAll.data[i].know!=null)
-      {this.myGuess2 = this.myGuess+';'+ this.ids[i]+":"+this.dataAll.data[i].know;
+      {this.myGuess2 = this.myGuess2 + this.ids[i]+":"+this.dataAll.data[i].know + ',';
       console.log(this.myGuess2)}
     }
     this.mountainsService.findMe(this.ip).subscribe((resp)=>{
-      console.log(resp.body.data);
       this.allGuess=resp.body.data;
-      console.log(this.allGuess[this.allGuess.length-1].id);
       this.id=this.allGuess[this.allGuess.length-1].id;
       this.mountainsService.guessAll(this.myGuess2,this.id).subscribe((resp)=>{
         console.log(resp)
@@ -76,20 +83,15 @@ export class MountainsComponent implements OnInit {
 
   getMountains():void{
     this.mountainsService.getMountains().subscribe((resp)=>{
-      console.log(resp);
-      console.log(resp.data);
       if(resp.success == true){
         this.resps = resp;
         this.mountains = resp.data;
         console.log(this.mountains);
         for( let i=0;i<resp.data.length;i++){
           this.mountains[i].no=i;
-          console.log(resp.data[i].id);
           this.ids[i]=resp.data[i].id
         }//存所有id
-        console.log(this.ids);
         this.dataAll.data = resp.data;
-        console.log(this.dataAll.data);
         for( let i=0;i<resp.data.length;i++) {
 
         }
@@ -97,13 +99,12 @@ export class MountainsComponent implements OnInit {
     })
   }
   next=true;
+  finished=true;
   changeNext():void{
     this.next=false;
   }
-  test1(index):void{
-    console.log(index);
-    this.mountains[index].guess=this.mountains[index].slider;
-    console.log(this.mountains)
+  changeFinished():void{
+    this.finished=false;
   }
   myGuess;
   myID;
@@ -112,32 +113,34 @@ export class MountainsComponent implements OnInit {
   know;
   allGuess=[];
   checkOne=0;
+
   ifFinished():void{
-    for( let i=0;i<3;i++){
+    this.checkOne=0;
+    for( let i=0;i<25;i++){
       if(this.mountains[i].guess>0){
         this.checkOne=this.checkOne+1;
       }
     }
-    console.log(this.checkOne)
-    if(this.checkOne==3){
+    //console.log(this.checkOne)
+    if(this.checkOne==25){
       this.guessAll();
       this.changeNext();
     }
     else{
-      alert('Please finish all your questions!')
+      this.changeFinished();
     }
   }
   myGuess2;
 
   guessAll():void{
     this.myGuess=this.ids[0]+":"+this.mountains[0].guess;
-    for( let i=1;i<3;i++){
+    for( let i=1;i<25;i++){
       this.myGuess=this.myGuess+','+this.ids[i]+":"+this.mountains[i].guess;
-      console.log(this.myGuess);
     }
-    for( let i=0;i<3;i++){
+    for( let i=0;i<25;i++){
     this.dataAll.data[i].guess=this.mountains[i].guess;
-    if(Math.abs(this.dataAll.data[i].guess-this.dataAll.data[i].altitude)<=100){
+    this.dataAll.data[i].difference=Math.abs(this.dataAll.data[i].guess-this.dataAll.data[i].altitude);
+    if(Math.abs(this.dataAll.data[i].guess-this.dataAll.data[i].altitude)<=150){
       this.dataAll.data[i].color=0;
     }
     else{
@@ -145,9 +148,7 @@ export class MountainsComponent implements OnInit {
     }
     }
     this.mountainsService.findMe(this.ip).subscribe((resp)=>{
-      console.log(resp.body.data);
       this.allGuess=resp.body.data;
-      console.log(this.allGuess[this.allGuess.length-1].id);
       this.id=this.allGuess[this.allGuess.length-1].id;
       this.mountainsService.guessAll(this.myGuess,this.id).subscribe((resp)=>{
         console.log(resp)
@@ -155,31 +156,7 @@ export class MountainsComponent implements OnInit {
     });
 
   }
-  accept():void{
-    alert("Thank you a lot for your time!")
-  }
-  refuse():void{
-    alert("We are sorry to hear that, thank you!");
-    this.mountainsService.findMe(this.ip).subscribe((resp)=>{
-      this.allGuess=resp.body.data;
-      console.log(this.allGuess[this.allGuess.length-1].id);
-      this.id=this.allGuess[this.allGuess.length-1].id;
-      this.mountainsService.refuse(this.id).subscribe((resp)=>{
-        console.log(resp)
-      })
-    });
-  }
 
 
-
-}
-export class DataM{
-  id;
-  no: number ;
-  name: string;
-  altitude: number;
-  url: string;
-  info: string;
-  guess: number;
 }
 

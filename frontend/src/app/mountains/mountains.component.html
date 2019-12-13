@@ -1,10 +1,11 @@
-<mat-card>
-<p>hint:Please use the slider on the right to choose the altitude that you guess</p></mat-card>
+<mat-card *ngIf="next==true">
+  <p style="font-size: 150%">{{'28'|translate}} </p>
+  </mat-card>
 <div *ngIf="next==true"><mat-vertical-stepper >
   <mat-step *ngFor="let mountain of mountains" label="({{mountain.no+1}}/25)" [stepControl]="basicFormGroup">
    <form [formGroup]="basicFormGroup">
 
-     <a style="float:left;"><img src="http://172.18.69.107:8080/test/imgstore/{{mountain.img}}" alt="" style="height:300px"/></a>
+     <a style="float:left;"><img src="http://172.18.69.107:8080/test/imgstore/{{mountain.img}}" alt="" style="height:320px"/></a>
 
      <mat-slider formControlName="first" style="height: 320px;float: right"
        class="example-margin"
@@ -19,7 +20,14 @@
        [vertical]="1">
      </mat-slider>
      <hr>
-     <p style="float: left">{{'12'|translate}}{{mountain.guess}} M</p>
+     <br>
+     <button color="primary" mat-button mat-stroked-button>{{'12'|translate}}</button>
+     <br>
+     <br>
+<!--<mat-form-field>-->
+<!--     <input formControlName="testName" matInput type="number" placeholder="{{'3'|translate}}" [(ngModel)]="mountain.guess"  required>-->
+<!--</mat-form-field>-->
+       <button color="primary" mat-button mat-stroked-button>{{mountain.guess}} M</button>
 <!--<div >-->
       <!--<input class="slider-wrapper" type="range" name="{{mountain.id}}" min="0" max="9000" value="1000" step="1"  placeholder="Your guess" formControlName="first"-->
               <!--[(ngModel)]="mountain.guess">-->
@@ -29,7 +37,7 @@
 
      </form>
     <br>
-    <button mat-button matStepperNext style="float: right">
+    <button mat-button mat-raised-button color="primary" matStepperNext style="float: right">
      {{'13'|translate}}
     </button>
 
@@ -37,11 +45,15 @@
 
 </mat-vertical-stepper>
 
-<button mat-raised-button  (click)="ifFinished()">{{'14'|translate}}</button>
+
+<mat-card>
+  <button  mat-fab style="float: right" (click)="ifFinished()">{{'14'|translate}}</button>
+    <p *ngIf="finished==false">{{'30'|translate}}</p>
+</mat-card>
 </div>
 <div *ngIf="next==false" >
   <mat-card>
-    <p>Thank you! This is your result. Please review them for a second.</p>
+    <p>{{'16'|translate}}</p>
   </mat-card>
 
   <table mat-table [dataSource]="dataAll" style="width: 100%" >
@@ -52,7 +64,7 @@
 
     <ng-container matColumnDef="img"  style="width: 10%">
       <mat-header-cell *matHeaderCellDef mat-sort-header>{{'20'|translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row"> <a><img src="http://172.18.69.107:8080/test/imgstore/{{row.img}}" alt="" style="height:150px"/></a></mat-cell>
+      <mat-cell *matCellDef="let row"> <a><img src="http://172.18.69.107:8080/test/imgstore/{{row.img}}" alt="" style="width:200px"/></a></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="altitude" style="width: 10%">
@@ -67,12 +79,12 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="color" style="width: 10%">
-      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{'31'|translate}}</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <!--<button mat-button mat-raised-button style="color: darkgreen" *ngIf="row.color==0">{{'23'|translate}}</button>-->
-        <button mat-button mat-raised-button style="color: red" *ngIf="row.color==1">{{'24'|translate}}</button>
+        <button mat-button mat-raised-button style="color: red" *ngIf="row.color==1">{{row.difference}} M</button>
         <mat-card *ngIf="row.color==0">
-          <h2>Do you already know this mountain?</h2>
+          <h2 style="font-size: inherit">{{'23'|translate}}</h2>
           <mat-radio-group class="example-radio-group" [(ngModel)]="row.know">
             <mat-radio-button value="1">{{'11'|translate}}</mat-radio-button>
             <mat-radio-button value="0">{{'18'|translate}}</mat-radio-button>
@@ -83,9 +95,10 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="info" style="width: 40%">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>{{'25'|translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let row" style="height: 200px;overflow: auto; font-size:1px">{{row.info}}
+    <ng-container matColumnDef="info" >
+      <mat-header-cell *matHeaderCellDef fxFlex="1000px" mat-sort-header>{{'25'|translate}}</mat-header-cell>
+      <mat-cell *matCellDef="let row" style="overflow: auto;font-size: 80%">{{row.info}}
+
       </mat-cell>
     </ng-container>
 
@@ -98,6 +111,6 @@
     <mat-row *matRowDef="let row; columns:['name','img','altitude','guess','color','info','url']"></mat-row>
 
   </table>
-  <button mat-button (click)="saveKnowledge()"  routerLink="/endpage">Next step</button>
+  <button mat-button mat-raised-button color="primary" (click)="saveKnowledge()" style="float: right" routerLink="/endpage">{{'32'|translate}}</button>
 
 </div>

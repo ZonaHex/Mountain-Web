@@ -21,14 +21,18 @@ import { EndpageComponent } from './endpage/endpage.component';
 import { MatTableModule} from "@angular/material";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import { TestComponent } from './test/test.component';
+import {MatDividerModule} from "@angular/material/divider";
+import {CdkTableModule} from "@angular/cdk/table";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
     AppComponent,
     MountainsComponent,
     HomepageComponent,
-    EndpageComponent
+    EndpageComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -46,13 +50,16 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     ReactiveFormsModule,
     HttpClientModule,
     MatTableModule,
+    MatSnackBarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatDividerModule,
+    CdkTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

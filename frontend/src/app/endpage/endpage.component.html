@@ -10,12 +10,15 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="accept()">{{'11'|translate}}</button>
-    <button mat-button (click)="refuse()">{{'18'|translate}}</button>
+    <button mat-button mat-raised-button color="primary" (click)="accept()">{{'11'|translate}}</button>
+    <button mat-button mat-raised-button (click)="refuse()">{{'18'|translate}}</button>
   </mat-card-actions>
-  <p>Do you want to try again?</p>
-  <mat-card-actions>
-    <button mat-button routerLink="/homepage">{{'11'|translate}}</button>
-    <button mat-button >{{'18'|translate}}</button>
+  <p *ngIf="first==true">{{'29'|translate}}</p>
+  <mat-card-actions *ngIf="first==true">
+    <button mat-button mat-raised-button color="primary" routerLink="/homepage">{{'11'|translate}}</button>
+    <button mat-button mat-raised-button (click)="end()" >{{'18'|translate}}</button>
   </mat-card-actions>
+  <mat-card *ngIf="ifEnd==true">
+    <p >{{'33'|translate}}</p>
+  </mat-card>
 </mat-card>
