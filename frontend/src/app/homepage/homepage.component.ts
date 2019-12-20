@@ -10,6 +10,7 @@ import { MountainsService} from "../mountains/mountains.service";
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  private router: any;
 
   constructor(
     private homepageService: HomepageService,
@@ -39,7 +40,7 @@ export class HomepageComponent implements OnInit {
   }
   private _tickInterval = 1;
   user: User=new User();
-  myExpert;//how well do you know mountains
+  myExpert=-1;//how well do you know mountains
   expert;
   ip:string;
   getIP():void{
@@ -58,17 +59,23 @@ export class HomepageComponent implements OnInit {
     });
 
   }
-  myMountain;
-  createUser():void{
-    this.user.age=this.myAge;
-    this.user.ip=this.ip;
-      this.user.expert=this.myExpert;
-    this.user.num=this.myMountain;
-    this.homepageService.createUser(this.user).subscribe((resp) =>{
-      console.log(resp);
-      console.log(this.user);
-      localStorage.setItem("myIP",this.ip);
-    })
+  myMountain=-1;
+  finished=true;
+  changeFinished():void{
+    this.finished=false;
   }
+  createUser():void{
 
+      this.finished = true;
+      this.user.age = this.myAge;
+      this.user.ip = this.ip;
+      this.user.expert = this.myExpert;
+      this.user.num = this.myMountain;
+      this.homepageService.createUser(this.user).subscribe((resp) => {
+        console.log(resp);
+        console.log(this.user);
+        localStorage.setItem("myIP", this.ip);
+      })
+    }
 }
+

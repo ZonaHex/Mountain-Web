@@ -26,10 +26,11 @@
   "25": "Introducción",
   "26": "Enlace",
   "27": "En esta página queremos conocer tu habilidad para estimar la altitud de la montaña que aparece en una imagen utilizando su información. Antes de empezar vamos a hacerte un par de preguntas:",
-  "28":"Ayuda: a continuación, se van a mostrar 25 imágenes de montañas,  usa el deslizador de la derecha de cada imagen para seleccionar su altitud. Puedes usar las flechas del teclado ↑ ↓ para ser más preciso",
+  "28":"Ayuda: a continuación, se van a mostrar 25 imágenes de montañas,  usa la caja de texto de la derecha de cada imagen para escribir su altitud. Puedes usar las flechas del teclado ↑ ↓ para ser más preciso",
   "29": "¿Quieres intentarlo de nuevo?",
   "30": "¡Por favor termine las 25 preguntas!",
   "31": "Diferencia",
   "32": "Siguiente",
-  "33": "Muchas gracias por participar en nuestro proyecto!"
+  "33": "Muchas gracias por participar en nuestro proyecto!",
+  "34": "¡Por favor termine las 3 preguntas!"
 }

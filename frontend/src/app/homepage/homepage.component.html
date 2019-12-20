@@ -73,8 +73,10 @@
         </section>
        <mat-divider></mat-divider>
         <h2>{{'10'|translate}}</h2>
-        <button mat-fab color="primary" routerLink="/mountains" (click)="createUser()"  >{{'11'|translate}}</button>
-
+        <button *ngIf="this.myAge>0 && this.myExpert>=0 && this.myMountain>=0" mat-fab color="primary" (click)="createUser()" routerLink="/mountains" >{{'11'|translate}}</button>
+      <mat-card>
+        <p *ngIf="this.myAge==0 && this.myExpert==-1 && this.myMountain==-1" > {{'34'|translate}}</p>
+      </mat-card>
       </mat-card-content>
     </mat-card>
   </div>

@@ -7,26 +7,28 @@
 
      <a style="float:left;"><img src="http://172.18.69.107:8080/test/imgstore/{{mountain.img}}" alt="" style="height:320px"/></a>
 
-     <mat-slider formControlName="first" style="height: 320px;float: right"
-       class="example-margin"
-       [disabled]="disabled"
-       [invert]="invert"
-       [max]="max"
-       [min]="min"
-       [step]="step"
-       [thumbLabel]="thumbLabel"
-       [tickInterval]="tickInterval"
-       [(ngModel)]="mountain.guess"
-       [vertical]="1">
-     </mat-slider>
-     <hr>
+<!--     <mat-slider formControlName="first" style="height: 320px;float: right"-->
+<!--       class="example-margin"-->
+<!--       [disabled]="disabled"-->
+<!--       [invert]="invert"-->
+<!--       [max]="max"-->
+<!--       [min]="min"-->
+<!--       [step]="step"-->
+<!--       [thumbLabel]="thumbLabel"-->
+<!--       [tickInterval]="tickInterval"-->
+<!--       [(ngModel)]="mountain.guess"-->
+<!--       [vertical]="1">-->
+<!--     </mat-slider>-->
+     <mat-form-field>
+       <p>
+         <input formControlName="testName" matInput type="number" placeholder="{{'21'|translate}}" [(ngModel)]="mountain.guess"  required> </p>
+     </mat-form-field>
+<!--     <hr>-->
      <br>
      <button color="primary" mat-button mat-stroked-button>{{'12'|translate}}</button>
      <br>
      <br>
-<!--<mat-form-field>-->
-<!--     <input formControlName="testName" matInput type="number" placeholder="{{'3'|translate}}" [(ngModel)]="mountain.guess"  required>-->
-<!--</mat-form-field>-->
+
        <button color="primary" mat-button mat-stroked-button>{{mountain.guess}} M</button>
 <!--<div >-->
       <!--<input class="slider-wrapper" type="range" name="{{mountain.id}}" min="0" max="9000" value="1000" step="1"  placeholder="Your guess" formControlName="first"-->
